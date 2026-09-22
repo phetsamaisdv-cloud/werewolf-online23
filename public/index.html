@@ -8,8 +8,37 @@
 </head>
 <body>
   <main class="container">
-    <h1>Werewolf Online</h1>
-    <p>Coming soon</p>
+    <header class="hero">
+      <h1>Werewolf Online</h1>
+      <p class="muted">เกมสืบหาใครคือหมาป่า</p>
+    </header>
+
+    <section class="card">
+      <label class="field" for="playerName">ชื่อของคุณ</label>
+      <input id="playerName" type="text" maxlength="20" placeholder="ใส่ชื่อผู้เล่น" autocomplete="nickname">
+      <p id="nameError" class="error" hidden></p>
+
+      <div class="btn-group">
+        <button id="createRoomBtn" class="btn">สร้างห้อง</button>
+      </div>
+
+      <div class="divider"><span>หรือ</span></div>
+
+      <div class="row">
+        <input id="roomCode" type="text" inputmode="numeric" maxlength="4"
+               placeholder="รหัส 4 หลัก" aria-label="รหัสห้อง">
+        <button id="joinRoomBtn" class="btn btn--wolf">เข้าห้อง</button>
+      </div>
+      <p id="roomError" class="error" hidden></p>
+    </section>
+
+    <footer class="links">
+      <a href="help.html">กติกา</a>
+      <a href="profile.html">โปรไฟล์</a>
+      <a href="settings.html">ตั้งค่า</a>
+    </footer>
   </main>
+
+  <script type="module" src="src/index-ui.js"></script>
 </body>
 </html>

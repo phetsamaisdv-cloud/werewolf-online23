@@ -3,6 +3,7 @@
     "rooms": {
       "$code": {
         ".read": "auth != null",
+        ".write": "!data.exists()",
 
         "meta": {
           ".read": "auth != null",

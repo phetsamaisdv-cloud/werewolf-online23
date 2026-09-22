@@ -110,6 +110,89 @@ p {
   cursor: not-allowed;
 }
 
+/* ฟอร์ม */
+.field {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--color-muted);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: var(--color-village);
+}
+
+input[type="text"]::placeholder {
+  color: var(--color-muted);
+}
+
+.btn-group {
+  margin-top: 14px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row input[type="text"] {
+  flex: 1;
+}
+
+.row .btn {
+  white-space: nowrap;
+}
+
+.error {
+  color: #f87171;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--color-muted);
+}
+
+.hero {
+  text-align: center;
+  padding: 24px 0;
+}
+
 @media (min-width: 768px) {
   .container {
     max-width: 840px;
