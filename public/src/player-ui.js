@@ -23,6 +23,11 @@ const state = { meta: null, players: {}, me: null, myRole: null, myAction: null,
 let submitLock = false;
 const _night = () => state.meta?.night ?? 1;
 
+// listener ตัวที่ไม่ใช่ทุก role มีสิทธิ์อ่าน (night/actions, wolf) → เงียบ ๆ ได้
+function _ignoreErr(err) {
+  console.warn("[listen]", err?.code ?? err);
+}
+
 function _name(uid) {
   return state.players[uid]?.name ?? `?`;
 }
@@ -276,11 +281,11 @@ async function _init() {
   subs.push(onValue(ref(db, `rooms/${code}/night/actions/${myUid}`), (snap) => {
     state.myAction = snap.exists() ? snap.val() : null;
     _render();
-  }));
+  }, _ignoreErr));
   subs.push(onValue(ref(db, `rooms/${code}/wolf`), (snap) => {
     state.wolf = snap.exists() ? snap.val() : {};
     _render();
-  }));
+  }, _ignoreErr));
 
   document.getElementById("leaveLink").addEventListener("click", () => subs.forEach((off) => off()));
 

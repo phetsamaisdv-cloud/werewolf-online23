@@ -13,6 +13,9 @@
   --gap: 16px;
 }
 
+/* ปราบปราม display override ที่จะทำให้ [hidden] ไม่ทำงาน */
+[hidden] { display: none !important; }
+
 /* Reset พื้นฐาน */
 *,
 *::before,
