@@ -1,4 +1,4 @@
-// ข้อมูลบทบาททั้งหมด (source of truth) + ฟังก์ชันตีฝ่าย
+﻿// ข้อมูลบทบาททั้งหมด (source of truth) + ฟังก์ชันตีฝ่าย
 // ตาม AGENTS.md ข้อ 4 — ห้ามแก้โดยไม่ถาม
 
 export const TEAM = {
@@ -15,7 +15,7 @@ export const ROLE = {
     nameEN: "Villager",
     team: TEAM.VILLAGE,
     description: "ไม่มีพลังพิเศษ",
-    iconPath: "assets/roles/villager.png",
+    iconPath: "assets/roles/villager.svg",
   },
   seer: {
     id: "seer",
@@ -23,7 +23,7 @@ export const ROLE = {
     nameEN: "Seer",
     team: TEAM.VILLAGE,
     description: "ตรวจหมาป่า/ไม่ใช่ 1 คน/คืน",
-    iconPath: "assets/roles/seer.png",
+    iconPath: "assets/roles/seer.svg",
   },
   doctor: {
     id: "doctor",
@@ -31,7 +31,7 @@ export const ROLE = {
     nameEN: "Doctor",
     team: TEAM.VILLAGE,
     description: "protect จาก wolf kill ห้าม protect ตัวเอง",
-    iconPath: "assets/roles/doctor.png",
+    iconPath: "assets/roles/doctor.svg",
   },
   hunter: {
     id: "hunter",
@@ -39,7 +39,7 @@ export const ROLE = {
     nameEN: "Hunter",
     team: TEAM.VILLAGE,
     description: "ตาย → ยิง 1 คน",
-    iconPath: "assets/roles/hunter.png",
+    iconPath: "assets/roles/hunter.svg",
   },
   bodyguard: {
     id: "bodyguard",
@@ -47,7 +47,7 @@ export const ROLE = {
     nameEN: "Bodyguard",
     team: TEAM.VILLAGE,
     description: "protect จาก wolf kill protect ตัวเองได้ ห้ามซ้ำคนเดิม",
-    iconPath: "assets/roles/bodyguard.png",
+    iconPath: "assets/roles/bodyguard.svg",
   },
   witch: {
     id: "witch",
@@ -55,7 +55,7 @@ export const ROLE = {
     nameEN: "Witch",
     team: TEAM.VILLAGE,
     description: "poison 1 + heal 1 (ไม่พร้อมกัน)",
-    iconPath: "assets/roles/witch.png",
+    iconPath: "assets/roles/witch.svg",
   },
   cupid: {
     id: "cupid",
@@ -63,7 +63,7 @@ export const ROLE = {
     nameEN: "Cupid",
     team: TEAM.VILLAGE,
     description: "คืนแรกเลือก Lovers 2 คน",
-    iconPath: "assets/roles/cupid.png",
+    iconPath: "assets/roles/cupid.svg",
   },
   mayor: {
     id: "mayor",
@@ -71,7 +71,7 @@ export const ROLE = {
     nameEN: "Mayor",
     team: TEAM.VILLAGE,
     description: "เปิดตัว → 2 votes",
-    iconPath: "assets/roles/mayor.png",
+    iconPath: "assets/roles/mayor.svg",
   },
   aura_seer: {
     id: "aura_seer",
@@ -79,7 +79,7 @@ export const ROLE = {
     nameEN: "Aura Seer",
     team: TEAM.VILLAGE,
     description: "ตรวจ role จริง",
-    iconPath: "assets/roles/aura_seer.png",
+    iconPath: "assets/roles/aura_seer.svg",
   },
   mason: {
     id: "mason",
@@ -87,7 +87,7 @@ export const ROLE = {
     nameEN: "Mason",
     team: TEAM.VILLAGE,
     description: "2 คน รู้จักกัน",
-    iconPath: "assets/roles/mason.png",
+    iconPath: "assets/roles/mason.svg",
   },
   diseased: {
     id: "diseased",
@@ -95,7 +95,7 @@ export const ROLE = {
     nameEN: "Diseased",
     team: TEAM.VILLAGE,
     description: "ถูก wolf kill → wolf ฆ่าไม่ได้คืนถัดไป",
-    iconPath: "assets/roles/diseased.png",
+    iconPath: "assets/roles/diseased.svg",
   },
   insomniac: {
     id: "insomniac",
@@ -103,7 +103,7 @@ export const ROLE = {
     nameEN: "Insomniac",
     team: TEAM.VILLAGE,
     description: "ชนะกับชาวบ้าน",
-    iconPath: "assets/roles/insomniac.png",
+    iconPath: "assets/roles/insomniac.svg",
   },
   cursed: {
     id: "cursed",
@@ -111,7 +111,7 @@ export const ROLE = {
     nameEN: "Cursed",
     team: TEAM.VILLAGE,
     description: "ถูกกัด → turned กลายเป็นหมาป่า (ทีมกึ่ง ๆ ดู getTeam)",
-    iconPath: "assets/roles/cursed.png",
+    iconPath: "assets/roles/cursed.svg",
   },
 
   // ── ฝ่ายหมาป่า ──
@@ -121,7 +121,7 @@ export const ROLE = {
     nameEN: "Werewolf",
     team: TEAM.WOLF,
     description: "ร่วม kill",
-    iconPath: "assets/roles/werewolf.png",
+    iconPath: "assets/roles/werewolf.svg",
   },
   wolf_cub: {
     id: "wolf_cub",
@@ -129,7 +129,7 @@ export const ROLE = {
     nameEN: "Wolf Cub",
     team: TEAM.WOLF,
     description: "ตาย → wolf kill 2 คนคืนถัดไป",
-    iconPath: "assets/roles/wolf_cub.png",
+    iconPath: "assets/roles/wolf_cub.svg",
   },
   sorceress: {
     id: "sorceress",
@@ -137,7 +137,7 @@ export const ROLE = {
     nameEN: "Sorceress",
     team: TEAM.WOLF,
     description: "หา Seer 1 คน/คืน (yes/no)",
-    iconPath: "assets/roles/sorceress.png",
+    iconPath: "assets/roles/sorceress.svg",
   },
   minion: {
     id: "minion",
@@ -145,7 +145,7 @@ export const ROLE = {
     nameEN: "Minion",
     team: TEAM.WOLF,
     description: "รู้ wolf แต่ wolf ไม่รู้ ไม่ร่วม kill",
-    iconPath: "assets/roles/minion.png",
+    iconPath: "assets/roles/minion.svg",
   },
 
   // ── ฝ่ายกลาง ──
@@ -155,7 +155,7 @@ export const ROLE = {
     nameEN: "Fool",
     team: TEAM.NEUTRAL,
     description: "ถูกโหวตออก → ชนะทันที",
-    iconPath: "assets/roles/fool.png",
+    iconPath: "assets/roles/fool.svg",
   },
 };
 

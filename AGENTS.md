@@ -51,11 +51,14 @@ werewolf-online/
 │       ├── end-ui.js       # UI logic ของ end.html
 │       ├── style.css       # CSS mobile-first
 │       └── __tests__/
-│           └── win-check.test.js
-├── assets/
-│   ├── roles/              # ไอคอน role (.png หรือ .svg)
-│   ├── ui/                 # ไอคอน UI
-│   └── bg/                 # พื้นหลัง
+│           ├── win-check.test.js
+│           ├── game.test.js
+│           ├── night.test.js
+│           └── cursed.test.js
+│   └── assets/             # ย้ายเข้ามาใต้ public/ (Netlify เสิร์ฟ public/ เป็น root)
+│       ├── roles/          # ไอคอน role (.svg placeholder) — path อ้างถึง "assets/roles/..."
+│       ├── ui/             # ไอคอน UI (favicon.svg ฯลฯ)
+│       └── bg/             # พื้นหลัง
 ├── .gitignore
 ├── firebase.json
 ├── firebase-rules.json
