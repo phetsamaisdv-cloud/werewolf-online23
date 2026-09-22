@@ -283,6 +283,39 @@ input[type="text"]::placeholder {
   color: #fff;
 }
 
+/* Role Card */
+.role-card {
+  text-align: center;
+  padding: 18px 16px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+}
+
+.role-card__icon {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.role-card__name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-neutral);
+}
+
+.role-card__en {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+}
+
+.role-card__desc {
+  font-size: 14px;
+  color: var(--color-text);
+}
+
 @media (min-width: 768px) {
   .container {
     max-width: 840px;

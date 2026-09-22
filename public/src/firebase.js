@@ -51,6 +51,17 @@ export async function getRoom(code) {
   }
 }
 
+// อ่านบทบาทของตัวเอง (อ่านได้เฉพาะ uid ตัวเองตาม rules)
+export async function getRole(code, uid) {
+  try {
+    const snap = await get(ref(db, `rooms/${code}/secret/roles/${uid}`));
+    return snap.exists() ? snap.val() : null;
+  } catch (err) {
+    console.error("[getRole]", err);
+    throw err;
+  }
+}
+
 // สร้าง/เขียนข้อมูลห้อง (atomic update)
 export async function updateRoom(code, data) {
   try {
