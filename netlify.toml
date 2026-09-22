@@ -1,0 +1,3 @@
+# Netlify build config — publish เฉพาะ public/ (เกมอยู่ที่นั่น)
+[build]
+  publish = "public"
