@@ -130,12 +130,11 @@ export async function createRoom(name, avatar = "") {
     const uid = await ensureAuth();
     if (!name || !name.trim()) throw new Error("ต้องใส่ชื่อผู้เล่น");
 
-    // วนลูปสุ่มรหัสจนกว่าจะไม่ซ้ำ
+    // วนลูปสุ่มรหัสจนกว่าจะไม่ซ้ำ (อ่านแค่ meta — อ่านทั้ง node rooms ไม่ได้เพราะ rules ปิด)
     for (let attempt = 0; attempt < 20; attempt++) {
       const code = _generateRoomCode();
-      const roomRef = ref(db, `rooms/${code}`);
-      const snap = await get(roomRef);
-      if (snap.exists()) continue;
+      const metaSnap = await get(ref(db, `rooms/${code}/meta`));
+      if (metaSnap.exists()) continue;
 
       // สร้างห้องตาม Data Schema (แผนข้อ 8)
       const roomData = {
@@ -164,7 +163,7 @@ export async function createRoom(name, avatar = "") {
         },
       };
 
-      await set(roomRef, roomData);
+      await set(ref(db, `rooms/${code}`), roomData);
       return code;
     }
     throw new Error("สร้างห้องไม่ได้ ให้ลองใหม่");
