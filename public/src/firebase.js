@@ -36,11 +36,15 @@ export async function ensureAuth() {
   }
 }
 
-// อ่านข้อมูลห้องครั้งเดียว
+// อ่านข้อมูลห้องครั้งเดียว (meta + players แยก path — กันอ่าน secret ไปด้วย)
 export async function getRoom(code) {
   try {
-    const snap = await get(ref(db, `rooms/${code}`));
-    return snap.exists() ? snap.val() : null;
+    const [metaSnap, playersSnap] = await Promise.all([
+      get(ref(db, `rooms/${code}/meta`)),
+      get(ref(db, `rooms/${code}/players`)),
+    ]);
+    if (!metaSnap.exists()) return null;
+    return { meta: metaSnap.val(), players: playersSnap.exists() ? playersSnap.val() : {} };
   } catch (err) {
     console.error("[getRoom]", err);
     throw err;
@@ -57,13 +61,34 @@ export async function updateRoom(code, data) {
   }
 }
 
-// ฟังห้องแบบ realtime — คืน callback สำหรับ unsubscribe
+// ฟังห้องแบบ realtime — ฟัง meta + players แยก path แล้วรวมส่ง callback
+// คืนฟังก์ชัน unsubscribe
 export function listenRoom(code, callback) {
   try {
-    const roomRef = ref(db, `rooms/${code}`);
-    return onValue(roomRef, (snap) => {
-      if (snap.exists()) callback(snap.val());
+    const metaRef = ref(db, `rooms/${code}/meta`);
+    const playersRef = ref(db, `rooms/${code}/players`);
+
+    let metaData = null;
+    let playersData = {};
+    const emit = () => {
+      if (metaData === null) return;
+      callback({ meta: metaData, players: playersData });
+    };
+
+    const offMeta = onValue(metaRef, (snap) => {
+      metaData = snap.exists() ? snap.val() : null;
+      emit();
     });
+
+    const offPlayers = onValue(playersRef, (snap) => {
+      playersData = snap.exists() ? snap.val() : {};
+      emit();
+    });
+
+    return () => {
+      offMeta();
+      offPlayers();
+    };
   } catch (err) {
     console.error("[listenRoom]", err);
     throw err;
@@ -156,28 +181,31 @@ export async function joinRoom(code, name, avatar = "") {
     if (!name || !name.trim()) throw new Error("ต้องใส่ชื่อผู้เล่น");
     if (!code || String(code).length !== ROOM_CODE_LENGTH) throw new Error("รหัสห้องต้องเป็น 4 หลัก");
 
-    const roomRef = ref(db, `rooms/${code}`);
-    const snap = await get(roomRef);
-    if (!snap.exists()) throw new Error("ห้องไม่มี แจ้งเพื่อนเช็กรหัสอีกที");
+    const [metaSnap, playersSnap] = await Promise.all([
+      get(ref(db, `rooms/${code}/meta`)),
+      get(ref(db, `rooms/${code}/players`)),
+    ]);
+    if (!metaSnap.exists()) throw new Error("ห้องไม่มี แจ้งเพื่อนเช็กรหัสอีกที");
 
-    const room = snap.val();
-    const playerCount = Object.keys(room.players || {}).length;
+    const roomMeta = metaSnap.val();
+    const roomPlayers = playersSnap.exists() ? playersSnap.val() : {};
+    const playerCount = Object.keys(roomPlayers).length;
     if (playerCount >= MAX_PLAYERS) throw new Error("ห้องเต็ม (16 คนแล้ว)");
-    if (room.meta?.phase !== "lobby") throw new Error("เกมเริ่มไปแล้ว เข้าห้องไม่ได้");
+    if (roomMeta?.phase !== "lobby") throw new Error("เกมเริ่มไปแล้ว เข้าห้องไม่ได้");
 
     // เพิ่ม/อัปเดตผู้เล่นตัวเอง
     const now = Date.now();
     const playerData = {
       name: name.trim(),
       alive: true,
-      joinedAt: room.players?.[uid]?.joinedAt ?? now,
+      joinedAt: roomPlayers?.[uid]?.joinedAt ?? now,
       voteTarget: null,
       revealed: false,
-      avatar: room.players?.[uid]?.avatar ?? avatar,
+      avatar: roomPlayers?.[uid]?.avatar ?? avatar,
     };
 
     await update(ref(db, `rooms/${code}/players/${uid}`), playerData);
-    return room;
+    return { meta: roomMeta, players: roomPlayers };
   } catch (err) {
     console.error("[joinRoom]", err);
     throw err;

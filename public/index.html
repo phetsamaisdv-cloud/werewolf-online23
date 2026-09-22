@@ -39,6 +39,16 @@
     </footer>
   </main>
 
+  <!-- importmap: แก้ bare import จาก firebase/... ให้ชี้ไป CDN (ไม่ต้องใช้ bundler) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js",
+        "firebase/auth": "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js",
+        "firebase/database": "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js"
+      }
+    }
+  </script>
   <script type="module" src="src/index-ui.js"></script>
 </body>
 </html>

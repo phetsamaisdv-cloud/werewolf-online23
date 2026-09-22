@@ -2,12 +2,11 @@
   "rules": {
     "rooms": {
       "$code": {
-        ".read": "auth != null",
         ".write": "!data.exists()",
 
         "meta": {
           ".read": "auth != null",
-          ".write": "auth.uid === data.parent().child('meta/hostUid').val() || auth.uid === data.parent().child('meta/hostUid2').val()"
+          ".write": "(!data.exists() && newData.child('hostUid').val() === auth.uid) || auth.uid === data.parent().child('meta/hostUid').val() || auth.uid === data.parent().child('meta/hostUid2').val()"
         },
 
         "players": {
