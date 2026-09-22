@@ -5,6 +5,9 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInAnonymously } from "firebase/auth";
 import { getDatabase, ref, get, set, update, remove, onValue } from "firebase/database";
 
+// re-export SDK บางตัว ให้หน้า UI import จาก firebase.js ตัวเดียว (ตรงตาม AGENTS ข้อ 7.1/7.2)
+export { ref, onValue };
+
 // ค่าจาก Firebase Console (Project: werewolf-online23)
 const firebaseConfig = {
   apiKey: "AIzaSyCAkC4zq9ntCkq370R2hsMlrxnUkE0546A",
