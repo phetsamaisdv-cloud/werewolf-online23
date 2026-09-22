@@ -1,0 +1,81 @@
+{
+  "rules": {
+    "rooms": {
+      "$code": {
+        ".read": "auth != null",
+
+        "meta": {
+          ".read": "auth != null",
+          ".write": "auth.uid === data.parent().child('meta/hostUid').val() || auth.uid === data.parent().child('meta/hostUid2').val()"
+        },
+
+        "players": {
+          ".read": "auth != null",
+          "$uid": {
+            ".write": "auth.uid === $uid || auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()",
+            "voteTarget": {
+              ".write": "auth.uid === $uid"
+            }
+          }
+        },
+
+        "secret": {
+          "roles": {
+            ".read": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val() || auth.uid === root.child('rooms/'+$code+'/meta/hostUid2').val()",
+            "$uid": {
+              ".read": "auth.uid === $uid || auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val() || auth.uid === root.child('rooms/'+$code+'/meta/hostUid2').val()",
+              ".write": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()"
+            }
+          },
+          "cursed": {
+            "$uid": {
+              ".read": "auth.uid === $uid || auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val() || root.child('rooms/'+$code+'/wolf/members/'+auth.uid).exists()",
+              ".write": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()"
+            }
+          }
+        },
+
+        "wolf": {
+          ".read": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val() || root.child('rooms/'+$code+'/wolf/members/'+auth.uid).exists()",
+          ".write": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val() || root.child('rooms/'+$code+'/wolf/members/'+auth.uid).exists()"
+        },
+
+        "night": {
+          ".read": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()",
+          "actions": {
+            "$uid": {
+              ".write": "auth.uid === $uid"
+            }
+          }
+        },
+
+        "hunter": {
+          ".read": "auth != null",
+          ".write": "auth.uid === root.child('rooms/'+$code+'/hunter/uid').val() || auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()"
+        },
+
+        "lovers": {
+          ".read": "auth != null",
+          ".write": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()"
+        },
+
+        "spectator": {
+          ".read": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()",
+          ".write": false
+        },
+
+        "center": {
+          ".read": "auth != null",
+          ".write": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()"
+        },
+
+        "customRoles": {
+          ".read": "auth != null",
+          "$roleId": {
+            ".write": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()"
+          }
+        }
+      }
+    }
+  }
+}

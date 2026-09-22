@@ -1,0 +1,26 @@
+{
+  "name": "werewolf-online",
+  "version": "1.0.0",
+  "description": "Werewolf Online v2.2 — Social Deduction Web Game (Firebase + Netlify + Vanilla JS)",
+  "type": "module",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "firebase serve",
+    "deploy": "firebase deploy",
+    "test": "node --test public/src/__tests__/"
+  },
+  "keywords": [
+    "werewolf",
+    "social-deduction",
+    "firebase",
+    "multiplayer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^11.0.0"
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.0.0"
+  }
+}
