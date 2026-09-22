@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "firebase serve",
     "deploy": "firebase deploy",
-    "test": "node --test public/src/__tests__/"
+    "test": "node --test \"public/src/__tests__/*.test.js\""
   },
   "keywords": [
     "werewolf",
