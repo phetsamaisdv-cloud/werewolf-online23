@@ -316,6 +316,86 @@ input[type="text"]::placeholder {
   color: var(--color-text);
 }
 
+.role-card--mine {
+  border-color: var(--color-neutral);
+}
+
+/* Host table */
+.role-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.role-table th, .role-table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.role-table th {
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.tag--wolf {
+  background-color: var(--color-wolf);
+  color: #fff;
+}
+
+.tag--neutral {
+  background-color: var(--color-neutral);
+  color: #111;
+}
+
+.tag--village {
+  background-color: var(--color-village);
+  color: #fff;
+}
+
+.tag--dead {
+  background-color: #333;
+  color: #aaa;
+}
+
+.tag--alive {
+  background-color: var(--color-village);
+  color: #fff;
+}
+
+/* Night panels */
+.night-panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.night-live__title {
+  font-weight: 700;
+  margin-top: 10px;
+  color: var(--color-neutral);
+}
+
+.select {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: 15px;
+  margin: 8px 0;
+}
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
 @media (min-width: 768px) {
   .container {
     max-width: 840px;

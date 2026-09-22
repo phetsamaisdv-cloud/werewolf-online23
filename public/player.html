@@ -7,9 +7,46 @@
   <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-  <main class="container">
-    <h1>ผู้เล่น</h1>
-    <p>Coming soon</p>
+  <main class="container" id="playerRoot" hidden>
+    <header class="hero">
+      <h1 id="heroTitle">ผู้เล่น</h1>
+      <div class="room-code">
+        <span class="badge" id="phaseBadge">-</span>
+        <span class="badge" id="activeRoleBadge"></span>
+      </div>
+    </header>
+
+    <!-- Role ของตัวเอง -->
+    <section class="card" id="roleSection">
+      <div id="roleCard" class="role-card role-card--mine"></div>
+    </section>
+
+    <!-- กลางคืน: action -->
+    <section class="card" id="nightSection" hidden>
+      <div class="section-head"><h2>กลางคืน</h2></div>
+      <p id="nightMsg" class="muted">รอคนทรงเรียก...</p>
+      <div id="actionForm" hidden></div>
+    </section>
+
+    <!-- กลางวัน/อื่น ๆ -->
+    <section class="card" id="daySection" hidden>
+      <p id="dayMsg" class="muted"></p>
+    </section>
+
+    <footer class="links">
+      <a id="leaveLink" href="index.html">ออกจากห้อง</a>
+    </footer>
   </main>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js",
+        "firebase/auth": "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js",
+        "firebase/database": "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js"
+      }
+    }
+  </script>
+  <script type="module" src="src/player-ui.js"></script>
 </body>
 </html>

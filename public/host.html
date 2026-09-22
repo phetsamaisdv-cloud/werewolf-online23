@@ -7,9 +7,85 @@
   <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-  <main class="container">
-    <h1>คนทรง</h1>
-    <p>Coming soon</p>
+  <main class="container" id="hostRoot" hidden>
+    <header class="hero">
+      <h1>คนทรง</h1>
+      <div class="room-code">
+        <span class="room-code__label">ห้อง</span>
+        <span class="room-code__value" id="roomCodeValue">----</span>
+        <span class="badge" id="phaseBadge">-</span>
+        <span class="badge" id="nightBadge">คืน 1</span>
+      </div>
+    </header>
+
+    <!-- รายชื่อผู้เล่น + บทบาท (host เห็นได้) -->
+    <section class="card">
+      <div class="section-head">
+        <h2>ผู้เล่น</h2>
+        <span class="badge" id="playerCount">0/16</span>
+      </div>
+      <table class="role-table" id="playerTable">
+        <thead>
+          <tr><th>ชื่อ</th><th>บทบาท</th><th>ทีม</th></tr>
+        </thead>
+        <tbody id="playerTableBody"></tbody>
+      </table>
+    </section>
+
+    <!-- คู่รัก -->
+    <section class="card">
+      <div class="section-head"><h2>คู่รัก</h2></div>
+      <p id="loversStatus" class="muted">ยังไม่ตั้งคู่รัก</p>
+      <label class="field-label">เลือกคนที่ 1
+        <select id="lover1" class="select"></select>
+      </label>
+      <label class="field-label">เลือกคนที่ 2
+        <select id="lover2" class="select"></select>
+      </label>
+      <button id="setLoversBtn" class="btn" type="button">ตั้งคู่รัก</button>
+    </section>
+
+    <!-- คุมเฟส -->
+    <section class="card">
+      <div class="section-head"><h2>ควบคุมเกม</h2></div>
+      <p id="hostMsg" class="muted">...</p>
+
+      <div id="lobbyControls" hidden>
+        <button id="startNightBtn" class="btn">เริ่มกลางคืนคืน 1</button>
+      </div>
+
+      <div id="nightControls" hidden>
+        <div class="btn-group" id="callButtons"></div>
+        <p id="activeRoleMsg" class="muted"></p>
+        <div id="nightLive"></div>
+        <button id="resolveNightBtn" class="btn" type="button">จบกลางคืน → กลางวัน</button>
+      </div>
+
+      <div id="dayControls" hidden>
+        <p id="nightResultMsg" class="muted"></p>
+        <div class="btn-group">
+          <button id="nextNightBtn" class="btn">เริ่มคืนถัดไป</button>
+          <button id="endGameBtn" class="btn btn--ghost">จบเกม (รีแมตช์)</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="links">
+      <a id="transferLink" href="#">โอนสิทธิ์คนทรง</a>
+      <span class="muted">·</span>
+      <a id="leaveLink" href="index.html">ออกจากห้อง</a>
+    </footer>
   </main>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js",
+        "firebase/auth": "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js",
+        "firebase/database": "https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js"
+      }
+    }
+  </script>
+  <script type="module" src="src/host-ui.js"></script>
 </body>
 </html>

@@ -41,7 +41,10 @@
         },
 
         "night": {
-          ".read": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val()",
+          ".read": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val() || auth.uid === root.child('rooms/'+$code+'/meta/hostUid2').val()",
+          "result": {
+            ".write": "auth.uid === root.child('rooms/'+$code+'/meta/hostUid').val() || auth.uid === root.child('rooms/'+$code+'/meta/hostUid2').val()"
+          },
           "actions": {
             "$uid": {
               ".write": "auth.uid === $uid"
